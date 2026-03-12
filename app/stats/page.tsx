@@ -120,7 +120,12 @@ export default function Stats() {
             <div className="bg-red-500/10 border border-red-500/20 rounded-xl p-4 text-red-400 text-sm">
               {trnError.includes("503") || trnError.includes("No API key") ? (
                 <><p className="font-bold mb-1">API Key Required</p><p>To enable this feature, get a free API key from <a href="https://tracker.gg/developers" target="_blank" className="underline">tracker.gg/developers</a> and add it to your .env file as <code className="bg-white/10 px-1 rounded">TRACKER_GG_API_KEY=your_key</code></p></>
-              ) : <p>{trnError}</p>}
+              ) : <p>{trnError.includes('Invalid authentication') ? (
+              <div>
+                <p className="font-semibold text-yellow-400 mb-1">TRN API Pending Approval</p>
+                <p className="text-sm text-gray-400">Your Tracker.gg API app is awaiting production approval. Once approved at <a href="https://tracker.gg/developers" className="text-blue-400 underline" target="_blank">tracker.gg/developers</a>, live stats will load here automatically.</p>
+              </div>
+            ) : trnError}</p>}
             </div>
           )}
 

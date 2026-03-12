@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Match {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  date      DateTime @default(now())
+  mode      String   @default("Solos")
+  placement Int
+  kills     Int      @default(0)
+  assists   Int      @default(0)
+  survived  Int      @default(0)
+  tilt      Int      @default(5)
+  mood      String   @default("neutral")
+  notes     String   @default("")
+  win       Boolean  @default(false)
+}
